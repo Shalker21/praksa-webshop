@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d4e2906b-f557-4437-b27c-d16c90914948" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="webshop_praksa" />
+  </component>
+  <component name="ProjectId" id="1Ysr64Mu5JYAbrpNyeLCPDYbmol" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Http/Controllers" />
+      <recent name="$PROJECT_DIR$/app/Http/Controllers/korisnik" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d4e2906b-f557-4437-b27c-d16c90914948" name="Default Changelist" comment="" />
+      <created>1583741963092</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1583741963092</updated>
+      <workItem from="1583741964971" duration="20656000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2144" y="525" width="354" height="147" key="NewPhpFileDialog" timestamp="1583754935730">
+      <screen x="1366" y="0" width="1920" height="1200" />
+    </state>
+    <state x="2144" y="525" width="354" height="147" key="NewPhpFileDialog/0.0.1366.768/1366.0.1920.1200@1366.0.1920.1200" timestamp="1583754935730" />
+    <state x="1989" y="267" width="672" height="678" key="search.everywhere.popup" timestamp="1583752772519">
+      <screen x="1366" y="0" width="1920" height="1200" />
+    </state>
+    <state x="1989" y="267" width="672" height="678" key="search.everywhere.popup/0.0.1366.768/1366.0.1920.1200@1366.0.1920.1200" timestamp="1583752772519" />
+  </component>
+</project>
