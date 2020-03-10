@@ -25,7 +25,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        if (auth()->check() && auth()->user()->is_admin == 1) {
+            return view('admin.create');
+        }
     }
 
     /**

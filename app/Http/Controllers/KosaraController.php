@@ -9,6 +9,7 @@ class KosaraController extends Controller
 {
     public function dodaj(Product $product) {
 
+
         // Dodajemo artikl u kosaru na temelju
         \Cart::session(auth()->id())->add(array(
             'id' => $product->id,

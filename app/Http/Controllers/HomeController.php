@@ -27,4 +27,8 @@ class HomeController extends Controller
         $artikli = Product::take(20)->get();
         return view('home')->with('artikli', $artikli);
     }
+
+    public function adminHome() {
+        return view('admin.home');
+    }
 }

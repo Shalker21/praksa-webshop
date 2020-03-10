@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use Facade\FlareClient\Report;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -35,6 +36,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        // Update validation!!!!
         $request->validate([
             'ime' => 'required',
             'prezime' => 'required',
@@ -72,11 +74,7 @@ class OrderController extends Controller
             ]);
         }
 
-        /*
-         * Pogledati order_items tablicu  mozda su idevi zamjenjeni narudzba i artikl
-        */
-
-        \Cart::session(auth()->id())->remove();
+        \Cart::session(auth()->id())->clear();
 
         return back();
     }
@@ -123,6 +121,6 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+
     }
 }

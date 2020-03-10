@@ -33,21 +33,44 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        @if(auth()->check() && auth()->user()->is_admin == 1)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.narudzbe') }}">Narudžbe</a>
+                            </li>
 
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Dodaj Kategoriju</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.create') }}">Dodaj Artikl</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.sviArtikli') }}">Svi Artikli</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.korisnici') }}">Korisnici</a>
+                            </li>
+                        @endif
+                        <li class="nav-item">
+
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('kosara.index') }}">
-                                Košara
-                                @auth
-                                    <small class="bg-dark p-1 rounded text-light">{{ \Cart::session(auth()->id())->getTotalQuantity() }}</small>
-                                @endauth
-                            </a>
-
-                        </li>
+                        @if(auth()->check() && auth()->user()->is_admin == 0)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('kosara.index') }}">
+                                    Košara
+                                    @auth
+                                        <small class="bg-dark p-1 rounded text-light">{{ \Cart::session(auth()->id())->getTotalQuantity() }}</small>
+                                    @endauth
+                                </a>
+                            </li>
+                        @endif
 
                         <!-- Authentication Links -->
                         @guest

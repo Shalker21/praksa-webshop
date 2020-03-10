@@ -19,8 +19,8 @@ class CreateOrderItemsTable extends Migration
             $table->unsignedBigInteger('narudzba_id');
             $table->unsignedBigInteger('artikl_id');
 
-            $table->foreign('narudzba_id')->references('id')->on('products')->onDelete('cascade');
-            $table->foreign('artikl_id')->references('id')->on('orders')->onDelete('cascade');
+            $table->foreign('narudzba_id')->references('id')->on('orders')->onDelete('cascade');
+            $table->foreign('artikl_id')->references('id')->on('products')->onDelete('cascade');
 
             $table->float('cijena');
             $table->integer('kolicina');

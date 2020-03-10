@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/korisnik/show/{productId}', 'ProductController@show')->name('korisnik.show');
+Route::get('admin/create', 'ProductController@create')->name('admin.create')->middleware('is_admin');
 
 Route::get('/kosara', 'KosaraController@index')->name('kosara.index')->middleware('auth');
 Route::get('/plati', 'KosaraController@plati')->name('kosara.plati')->middleware('auth');
@@ -27,5 +28,11 @@ Route::get('/brisi/{artiklId}', 'KosaraController@brisi')->name('kosara.brisi')-
 Route::get('/update/{artiklId}', 'KosaraController@update')->name('kosara.update')->middleware('auth');
 
 Route::resource('orders', 'OrderController')->middleware('auth');
+// Admin panel
+Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middleware('is_admin');
 
-
+Route::get('admin/narudzbe', 'admin\AdminController@narudzbe')->name('admin.narudzbe')->middleware('is_admin');
+Route::get('admin/detaljno/{id}', 'admin\AdminController@detaljno')->name('admin.detaljno')->middleware('is_admin');
+Route::get('admin/obrisiSingleOrderItem/{id}', 'admin\AdminController@obrisiSingleOrderItem')->name('admin.obrisiSingleOrderItem')->middleware('is_admin');
+Route::get('admin/sviArtikli', 'admin\AdminController@sviArtikli')->name('admin.sviArtikli')->middleware('is_admin');
+Route::get('admin/korisnici', 'admin\AdminController@korisnici')->name('admin.korisnici')->middleware('is_admin');

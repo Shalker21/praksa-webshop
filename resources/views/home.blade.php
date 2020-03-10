@@ -15,9 +15,18 @@
                     <p class="card-text">{{ $artikl->opis_artikla }}</p>
                     <small>{{ $artikl->cijena }} Kn</small>
                 </div>
-                <div class="card-body">
-                    <a href="{{ route('kosara.dodaj', $artikl->id ) }}">Dodaj u kosaricu</a>
-                </div>
+
+                @if(auth()->check() && auth()->user()->is_admin == 1)
+                    <div class="card-body">
+                        <a class="btn btn-primary" href="{{ route('kosara.dodaj', $artikl->id ) }}">Edit</a>
+                        <a class="btn btn-primary" href="{{ route('kosara.dodaj', $artikl->id ) }}">Detaljno</a>
+                        <a class="btn btn-danger" href="{{ route('kosara.dodaj', $artikl->id ) }}">Obriši</a>
+                    </div>
+                    @else
+                    <div class="card-body">
+                        <a href="{{ route('kosara.dodaj', $artikl->id ) }}">Dodaj u kosaricu</a>
+                    </div>
+                @endif
             </div>
             </div>
         @endforeach
