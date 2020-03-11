@@ -18,6 +18,10 @@ class CreateProductsTable extends Migration
             $table->string('ime');
             $table->string('opis_artikla');
             $table->float('cijena');
+            $table->string('velicina');
+            $table->float('akcijska_cijena');
+            $table->integer('level');
+            $table->integer('category_id');
             $table->string('path_slika')->nullable();
             $table->timestamps();
         });

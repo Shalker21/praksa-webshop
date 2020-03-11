@@ -38,7 +38,7 @@
                         <a href="{{ route('admin.detaljno', $narudzba->id) }}" class="btn btn-primary">Detaljno</a>
                     </span>
                     <span>
-                        <a href="#" class="btn btn-danger">Obriši</a>
+                        <a href="{{ route('admin.obrisiNarudzbu', $narudzba->id) }}" class="btn btn-danger">Obriši</a>
                     </span>
                 </td>
             </tr>

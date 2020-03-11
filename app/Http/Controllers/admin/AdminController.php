@@ -21,7 +21,6 @@ class AdminController extends Controller
     }
 
     public function detaljno($id) {
-        $narudzba = DB::table('orders')->find($id);
 
         $narudzba = DB::table('orders')
             ->join('order_items', 'orders.id', '=', 'order_items.narudzba_id')
@@ -34,8 +33,40 @@ class AdminController extends Controller
     }
 
     public function obrisiSingleOrderItem($id) {
+        // id oreder items i obrisati ako je cijena i kolicina 0
         // MORAMO UPDATATI ORDERS TABLE
-        // $row = DB::table('order_items')->where('artikl_id', '=', $id)->get();
+        $row = DB::table('order_items')->where('artikl_id', '=', $id)->get();
+
+        $orders_id = $row[0]->narudzba_id;
+        // mnozimo jer nismo spremili ukupnu cijenu prema kolicini neko cijenu single artikla(ISPRAVITI TO)!!!!
+        $decrementCijena = $row[0]->cijena * $row[0]->kolicina;
+        $decrementKolicina = $row[0]->kolicina;
+
+        // Brisemo row artikla u order_items
+        DB::table('order_items')->where('artikl_id', '=', $id)->delete();
+
+        $orders = DB::table('orders')->where('id' , '=', $orders_id)->get();
+
+        DB::table('orders')
+            ->where('id' , '=', $orders_id)
+            ->update([
+                'ukupna_cijena' => $orders[0]->ukupna_cijena - $decrementCijena,
+                'kolicina' => $orders[0]->kolicina - $decrementKolicina
+            ]);
+
+    dd($orders[0]->kolicina);
+
+        if($orders[0]->kolicina <= 0) {
+            dd($orders[0]->kolicina);
+            DB::table('orders')->where('id' , '=', $orders_id)->delete();
+        }
+
+        return back();
+    }
+
+    public function obrisiNarudzbu($id) {
+        DB::table('orders')->where('id' , '=', $id)->delete();
+
         return back();
     }
 
@@ -50,5 +81,13 @@ class AdminController extends Controller
         $korisnici = User::all();
 
         return view('admin.korisnici')->with('korisnici', $korisnici);
+    }
+
+    public function dodajArtikl() {
+        return view('admin.store');
+    }
+
+    public function dodajKategoriju() {
+        return view('admin.dodajKategoriju');
     }
 }

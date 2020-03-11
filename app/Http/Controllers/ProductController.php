@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Product;
+use foo\bar;
 use Illuminate\Http\Request;
 use Symfony\Component\VarDumper\Caster\PdoCaster;
 
@@ -26,7 +28,10 @@ class ProductController extends Controller
     public function create()
     {
         if (auth()->check() && auth()->user()->is_admin == 1) {
-            return view('admin.create');
+
+            // $categories = Category::pluck('naziv', 'id');
+
+            return view('admin.store');
         }
     }
 
@@ -38,7 +43,18 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product();
+        $product->ime = $request->input('ime');
+        $product->opis_artikla = $request->input('opis_artikla');
+        $product->cijena = $request->input('cijena');
+        $product->akcijska_cijena = $request->input('akcijska_cijena');
+        $product->velicina = $request->input('velicina');
+        $product->level = $request->input('level');
+        $product->category_id = $request->input('category_id');
+        $product->save();
+
+        return back();
+
     }
 
     /**

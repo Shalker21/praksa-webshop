@@ -39,11 +39,11 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Dodaj Kategoriju</a>
+                                <a class="nav-link" href="{{ route('admin.dodajKategoriju') }}">Dodaj Kategoriju</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.create') }}">Dodaj Artikl</a>
+                                <a class="nav-link" href="{{ route('admin.store') }}">Dodaj Artikl</a>
                             </li>
 
                             <li class="nav-item">
@@ -53,6 +53,41 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('admin.korisnici') }}">Korisnici</a>
                             </li>
+                            @else
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Muško
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">Dugi rukav Majice</a>
+                                    <a class="dropdown-item" href="#">Kratki rukav Majice</a>
+                                    <a class="dropdown-item" href="#">Hlaće</a>
+                                    <a class="dropdown-item" href="#">Trenirka</a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Žensko
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">Dugi rukav Majice</a>
+                                    <a class="dropdown-item" href="#">Kratki rukav Majice</a>
+                                    <a class="dropdown-item" href="#">Hlaće</a>
+                                    <a class="dropdown-item" href="#">Trenirka</a>
+                                    <a class="dropdown-item" href="#">Tenisice</a>
+                                    <a class="dropdown-item" href="#">Haljine</a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Ostalo
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">Čarape</a>
+                                    <a class="dropdown-item" href="#">Naočale</a>
+                                    <a class="dropdown-item" href="#">Šalovi</a>
+                                </div>
+                            </div>
                         @endif
                         <li class="nav-item">
 
@@ -110,5 +145,7 @@
             @yield('content')
         </main>
     </div>
+
+
 </body>
 </html>
