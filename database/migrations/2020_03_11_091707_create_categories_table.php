@@ -16,6 +16,8 @@ class CreateCategoriesTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('naziv');
+            $table->integer('level');
+            $table->integer('main_category_id');
             $table->timestamps();
         });
     }

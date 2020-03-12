@@ -4,7 +4,9 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Order;
+use App\Product;
 use App\User;
+use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -33,20 +35,12 @@ class AdminController extends Controller
     }
 
     public function obrisiSingleOrderItem($id) {
-        // id oreder items i obrisati ako je cijena i kolicina 0
-        // MORAMO UPDATATI ORDERS TABLE
         $row = DB::table('order_items')->where('artikl_id', '=', $id)->get();
-
         $orders_id = $row[0]->narudzba_id;
-        // mnozimo jer nismo spremili ukupnu cijenu prema kolicini neko cijenu single artikla(ISPRAVITI TO)!!!!
         $decrementCijena = $row[0]->cijena * $row[0]->kolicina;
         $decrementKolicina = $row[0]->kolicina;
-
-        // Brisemo row artikla u order_items
         DB::table('order_items')->where('artikl_id', '=', $id)->delete();
-
         $orders = DB::table('orders')->where('id' , '=', $orders_id)->get();
-
         DB::table('orders')
             ->where('id' , '=', $orders_id)
             ->update([
@@ -72,22 +66,40 @@ class AdminController extends Controller
 
     // OBRISATI JER NIJE POTREBNO, OBRISATI I U NAVIGACIJI !!
     public function sviArtikli() {
+        $categories = Category::all();
 
-        return view('admin.sviArtikli');
+        return view('admin.sviArtikli')->with('categories', $categories);
+    }
+
+    public function prikaziVrsteArtikala($id)
+    {
+        $categories = Category::all();
+        $pluck = $categories->where('main_category_id', '=', $id)->pluck('naziv', 'id');
+
+        return view('admin.sviArtikli')->with(['categories' => $categories, 'pluck' => $pluck]);
     }
 
     public function korisnici() {
-
         $korisnici = User::all();
 
         return view('admin.korisnici')->with('korisnici', $korisnici);
     }
 
     public function dodajArtikl() {
-        return view('admin.store');
+        $cat = Category::all();
+        $categories = $cat->where('level', '=', 1)->all();
+
+        return view('admin.store')->with(['categories' => $categories]);
     }
 
-    public function dodajKategoriju() {
-        return view('admin.dodajKategoriju');
+    public function fetch(Request $request) {
+            $html = '';
+            $vrste = Category::where('main_category_id', $request->main_kategorija_id)->get();
+            foreach ($vrste as $vrsta) {
+                $html .= '<option value="'.$vrsta->id.'">'.$vrsta->naziv.'</option>';
+            }
+
+        return response()->json(['html' => $html]);
     }
+
 }

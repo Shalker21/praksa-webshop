@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -15,8 +16,10 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = Category::all();
+        // kako bi mogli dohvatiti id glavne kategorijje
+        $pluck = $categories->where('level', 1)->pluck('naziv', 'id');
 
-        return view('admin.category.index')->with('categories', $categories);
+        return view('admin.dodajKategoriju')->with(['categories' => $categories, 'pluck' => $pluck]);
     }
 
     /**
@@ -26,7 +29,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -37,7 +40,38 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = new Category();
+
+        // Moramo provjeriti da li passamo data from first form ako ne onda je to druga forma
+        if ($request->get('prva_forma')) {
+
+            $category->naziv = $request->input('naziv');
+            $category->level = $request->input('level');
+            $category->main_category_id = $request->input('main_category_id');
+
+            $category->save();
+            return back();
+        }
+
+        if ($request->get('prva_forma')) {
+
+            $category->naziv = $request->input('naziv');
+            $category->level = $request->input('level');
+            $category->main_category_id = $request->input('main_category_id');
+
+            $category->save();
+            return back();
+        }
+
+        if ($request->get('druga_forma')) {
+            $category->naziv = $request->input('vrsta_naziv');
+            $category->level = $request->input('level');
+            $category->main_category_id = $request->input('category_odabrano');
+            $category->save();
+            return back();
+        }
+
+
     }
 
     /**
@@ -48,7 +82,7 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
