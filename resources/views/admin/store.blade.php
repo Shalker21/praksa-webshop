@@ -4,7 +4,6 @@
     <div class="container">
         <h2>DODAJ ARTIKL</h2>
 
-
         {!! Form::open(['action' => 'ProductController@store', 'method' => 'POST', 'files' => true]) !!}
             @csrf
             <div class="form-group">

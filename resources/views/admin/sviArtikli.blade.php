@@ -30,7 +30,7 @@
                 @if(isset($pluck))
                     @foreach($pluck as $p)
                         <tr>
-                            <td>{{ $p }}</td>
+                            <td><a class="vrsta" href="#" data-id="{{ $p->id }}">{{ $p->naziv }}</a></td>
                         </tr>
                     @endforeach
                 @endif
@@ -38,5 +38,32 @@
             </table>
 
         </section>
+
+        <div id="artikli" class="row">
+
+        </div>
+
+
+        <!-- svi produkti koji imaju level column isti kao u categories id
+            if(products->level == categories->id) {
+                ispisi artikle
+            }
+        -->
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $(".vrsta").click(function() {
+                        // alert($(this).data('id'));
+                        $.ajax({
+                            url: "{{ route('admin.fetchVrsteArtikli') }}?id="+$(this).data('id'),
+                            method: 'GET',
+                            success: function(data) {
+                                $('#artikli').html(data.html);
+                            }
+                        });
+                    });
+                });
+            </script>
     </div>
 @endsection

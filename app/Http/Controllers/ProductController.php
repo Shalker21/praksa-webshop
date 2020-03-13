@@ -6,6 +6,7 @@ use App\Category;
 use App\Product;
 use foo\bar;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\Types\Nullable;
 use Symfony\Component\VarDumper\Caster\PdoCaster;
 
 class ProductController extends Controller
@@ -43,6 +44,27 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'ime' => 'required',
+            'opis_artikla' => 'required',
+            'cijena' => 'required',
+            'akcijska_cijena' => 'required',
+            'velicina' => 'required',
+            'level' => 'required',
+            'category_id' => 'required',
+            'path_slika' => 'image|nullable|max:1999'
+        ]);
+
+        if($request->hasFile('path_slika')) {
+            $fileNameWtihExt = $request->file('path_slika')->getClientOriginalName();
+            $fileName = pathinfo($fileNameWtihExt, PATHINFO_FILENAME);
+            $extention = $request->file('path_slika')->getClientOriginalExtension();
+            $fileNameToStore = $fileName . '_' . time() . '.' . $extention;
+            $path = $request->file('path_slika')->storeAs('public/images', $fileNameToStore);
+        } else {
+            $fileNameToStore = 'default-image.jpg';
+        }
+
         $product = new Product();
         $product->ime = $request->input('ime');
         $product->opis_artikla = $request->input('opis_artikla');
@@ -51,6 +73,7 @@ class ProductController extends Controller
         $product->velicina = $request->input('velicina');
         $product->level = $request->input('level');
         $product->category_id = $request->input('category_id');
+        $product->path_slika = $fileNameToStore;
         $product->save();
 
         return back();

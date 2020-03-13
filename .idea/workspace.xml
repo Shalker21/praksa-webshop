@@ -2,17 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4e2906b-f557-4437-b27c-d16c90914948" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webshop_praksa.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webshop_praksa.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoriesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoriesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/admin/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/admin/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_11_091707_create_categories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_11_091707_create_categories_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/category/index.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/dodajKategoriju.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dodajKategoriju.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/detaljno.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/detaljno.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/store.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/store.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/sviArtikli.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/sviArtikli.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -176,7 +172,8 @@
       <workItem from="1583741964971" duration="21314000" />
       <workItem from="1583823581463" duration="26882000" />
       <workItem from="1583909899334" duration="26638000" />
-      <workItem from="1583996796831" duration="27281000" />
+      <workItem from="1583996796831" duration="27467000" />
+      <workItem from="1584083074405" duration="21410000" />
     </task>
     <servers />
   </component>
@@ -200,6 +197,14 @@
       <screen x="1366" y="0" width="1920" height="1200" />
     </state>
     <state width="572" height="445" key="SwitcherDM/0.0.1366.768/1366.0.1920.1200@1366.0.1920.1200" timestamp="1583933712496" />
+    <state x="1936" y="196" width="770" height="806" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1584088044429">
+      <screen x="1366" y="0" width="1920" height="1200" />
+    </state>
+    <state x="1936" y="196" width="770" height="806" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1366.768/1366.0.1920.1200@1366.0.1920.1200" timestamp="1584088044429" />
+    <state x="1990" y="276" key="run.anything.popup" timestamp="1584086074691">
+      <screen x="1366" y="0" width="1920" height="1200" />
+    </state>
+    <state x="1990" y="276" key="run.anything.popup/0.0.1366.768/1366.0.1920.1200@1366.0.1920.1200" timestamp="1584086074691" />
     <state x="1989" y="267" width="672" height="678" key="search.everywhere.popup" timestamp="1583997684384">
       <screen x="1366" y="0" width="1920" height="1200" />
     </state>

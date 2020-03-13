@@ -6,10 +6,29 @@
 
     <div class="row">
 
+
+
         @foreach($artikli as $artikl)
             <div class="col-md-4 mb-3">
             <div class="card">
-                <img class="card-img-top" src="{{ asset('default-image.jpg') }}" alt="image">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="card-img-top" src="/storage/images/{{ $artikl->path_slika }}" alt="image">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="card-img-top" src="/storage/images/{{ $artikl->path_slika }}" alt="image">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
                 <div class="card-body">
                     <h4 class="card-title"><a href="{{ route('korisnik.show', $artikl->id) }}">{{ $artikl->ime }}</a></h4>
                     <p class="card-text">{{ $artikl->opis_artikla }}</p>

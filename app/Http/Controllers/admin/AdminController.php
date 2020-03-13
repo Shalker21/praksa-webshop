@@ -23,7 +23,7 @@ class AdminController extends Controller
     }
 
     public function detaljno($id) {
-
+        $podaciNarudzbe = Order::find($id);
         $narudzba = DB::table('orders')
             ->join('order_items', 'orders.id', '=', 'order_items.narudzba_id')
             ->join('products', 'order_items.artikl_id', '=', 'products.id')
@@ -31,7 +31,7 @@ class AdminController extends Controller
             ->where('orders.id', '=', $id)
             ->get();
 
-        return view('admin.detaljno')->with(['narudzba'=> $narudzba]);
+        return view('admin.detaljno')->with(['narudzba'=> $narudzba, 'podaciNarudzbe' => $podaciNarudzbe]);
     }
 
     public function obrisiSingleOrderItem($id) {
@@ -74,32 +74,41 @@ class AdminController extends Controller
     public function prikaziVrsteArtikala($id)
     {
         $categories = Category::all();
-        $pluck = $categories->where('main_category_id', '=', $id)->pluck('naziv', 'id');
-
+        $pluck = $categories->where('main_category_id', '=', $id);
         return view('admin.sviArtikli')->with(['categories' => $categories, 'pluck' => $pluck]);
     }
 
+
     public function korisnici() {
         $korisnici = User::all();
-
         return view('admin.korisnici')->with('korisnici', $korisnici);
     }
 
     public function dodajArtikl() {
         $cat = Category::all();
         $categories = $cat->where('level', '=', 1)->all();
-
         return view('admin.store')->with(['categories' => $categories]);
     }
 
     public function fetch(Request $request) {
-            $html = '';
-            $vrste = Category::where('main_category_id', $request->main_kategorija_id)->get();
-            foreach ($vrste as $vrsta) {
-                $html .= '<option value="'.$vrsta->id.'">'.$vrsta->naziv.'</option>';
-            }
+        $html = '';
+        $vrste = Category::where('main_category_id', $request->main_kategorija_id)->get();
+        foreach ($vrste as $vrsta) {
+            $html .= '<option value="'.$vrsta->id.'">'.$vrsta->naziv.'</option>';
+        }
 
         return response()->json(['html' => $html]);
     }
 
+    public function fetchVrsteArtikli(Request $request) {
+        dd($request);
+        $html = '';
+        $proizvodiPremaVrstiArtikla = Product::where('main_category_id', $request->vrsta_id)->get();
+
+        foreach ($proizvodiPremaVrstiArtikla as $proizvod) {
+            $html .= '<div class="card">'.$proizvod->ime.'</div>';
+        }
+
+        return response()->json(['html' => $html]);
+    }
 }

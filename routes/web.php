@@ -45,3 +45,4 @@ Route::get('admin/korisnici', 'admin\AdminController@korisnici')->name('admin.ko
 
 Route::get('admin/dodajArtikl', 'admin\AdminController@dodajArtikl')->name('admin.dodajArtikl')->middleware('is_admin');
 Route::get('admin/fetch', 'admin\AdminController@fetch')->name('admin.fetch')->middleware('is_admin');
+Route::get('admin/fetchVrsteArtikli', 'admin\AdminController@fetchVrsteArtikli')->name('admin.fetchVrsteArtikli')->middleware('is_admin');
