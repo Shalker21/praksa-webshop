@@ -108,5 +108,6 @@
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="checkout" level="application" />
     <orderEntry type="library" name="vue" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
   </component>
 </module>

@@ -20,7 +20,9 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('user_id');
             $table->float('ukupna_cijena');
             $table->integer('kolicina');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
 
             $table->enum('nacin_placanja', ['placanje_pouzecem', 'kartica'])->default('placanje_pouzecem');
 

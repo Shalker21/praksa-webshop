@@ -35,30 +35,21 @@ class AdminController extends Controller
     }
 
     public function obrisiSingleOrderItem($id) {
-        $row = DB::table('order_items')->where('artikl_id', '=', $id)->get();
-        $orders_id = $row[0]->narudzba_id;
-        $decrementCijena = $row[0]->cijena * $row[0]->kolicina;
-        $decrementKolicina = $row[0]->kolicina;
+        $order_items = DB::table('order_items')->where('artikl_id', '=', $id)->get();
+        $orders = DB::table('orders')->where('id', '=', $order_items[0]->narudzba_id)->get();
+        $novaKolicina = $orders[0]->kolicina - $order_items[0]->kolicina;
+        $novaCijena = $orders[0]->ukupna_cijena - ($order_items[0]->cijena * $order_items[0]->kolicina);
         DB::table('order_items')->where('artikl_id', '=', $id)->delete();
-        $orders = DB::table('orders')->where('id' , '=', $orders_id)->get();
         DB::table('orders')
-            ->where('id' , '=', $orders_id)
-            ->update([
-                'ukupna_cijena' => $orders[0]->ukupna_cijena - $decrementCijena,
-                'kolicina' => $orders[0]->kolicina - $decrementKolicina
-            ]);
+            ->where('id', '=', $order_items[0]->narudzba_id)
+            ->update(['kolicina' => $novaKolicina, 'ukupna_cijena' => $novaCijena]);
 
-    dd($orders[0]->kolicina);
-
-        if($orders[0]->kolicina <= 0) {
-            dd($orders[0]->kolicina);
-            DB::table('orders')->where('id' , '=', $orders_id)->delete();
-        }
 
         return back();
     }
 
     public function obrisiNarudzbu($id) {
+        DB::table('order_items')->where('narudzba_id', '=', $id)->delete();
         DB::table('orders')->where('id' , '=', $id)->delete();
 
         return back();
@@ -101,14 +92,47 @@ class AdminController extends Controller
     }
 
     public function fetchVrsteArtikli(Request $request) {
-        dd($request);
         $html = '';
-        $proizvodiPremaVrstiArtikla = Product::where('main_category_id', $request->vrsta_id)->get();
+        $proizvodiPremaVrstiArtikla = Product::where('level', '=', $request->id)->get();
 
+        // Upgradati za korisnika da ima button za dodavanje u kosaricu
         foreach ($proizvodiPremaVrstiArtikla as $proizvod) {
-            $html .= '<div class="card">'.$proizvod->ime.'</div>';
+            $html .= '<div class="card m-3">
+                        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="card-img-top" src="/public/images/default-image.jpg" alt="image">
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                                <div class="card-body">
+                                    <h4 class="card-title"><a href="korisnik/show/' . $proizvod->id . ' ">'.$proizvod->ime.'</a></h4>
+                                    <p class="card-text">'.$proizvod->opis_artikla .'</p>
+                                    <small>'. $proizvod->cijena .'Kn</small>
+                                </div>';
+                            if(auth()->check() && auth()->user()->is_admin == 1) {
+                                $html .= '<div class="card-body" >
+                                    <a class="btn btn-primary" href = "#" > Edit</a >
+                                    <a class="btn btn-primary" href = "#" > Detaljno</a >
+                                    <a class="btn btn-danger" href = "#" > Obriši</a >
+                                </div >';
+                            } else {
+                                $html .= '<div class="card-body" >
+                                    <a href = "kosara/dodaj/'.$proizvod->id.'" > Dodaj u kosaricu </a >
+                                </div >';
+                            }
+
+                            $html .= '</div>
+                        </div>
+                    </div>';
         }
 
-        return response()->json(['html' => $html]);
+        return $html;
     }
 }

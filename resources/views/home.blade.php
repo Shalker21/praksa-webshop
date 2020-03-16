@@ -14,10 +14,7 @@
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="card-img-top" src="/storage/images/{{ $artikl->path_slika }}" alt="image">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="card-img-top" src="/storage/images/{{ $artikl->path_slika }}" alt="image">
+                            <img class="card-img-top" src="/public/images/default-image.jpg" alt="image">
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">

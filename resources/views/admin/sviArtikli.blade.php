@@ -23,14 +23,18 @@
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <td>VRSTE PROIZVODA</td>
+                    <td>VRSTE PROIZVODA: </td>
                 </tr>
                 </thead>
                 <tbody>
                 @if(isset($pluck))
                     @foreach($pluck as $p)
                         <tr>
-                            <td><a class="vrsta" href="#" data-id="{{ $p->id }}">{{ $p->naziv }}</a></td>
+                            <td>
+                                <form>
+                                    <a onclick="showUser(this.value, {{ $p->id }})" class="vrsta" href="#">{{ $p->naziv }}</a>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 @endif
@@ -52,18 +56,27 @@
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
             <script type="text/javascript">
-                $(document).ready(function() {
-                    $(".vrsta").click(function() {
-                        // alert($(this).data('id'));
-                        $.ajax({
-                            url: "{{ route('admin.fetchVrsteArtikli') }}?id="+$(this).data('id'),
-                            method: 'GET',
-                            success: function(data) {
-                                $('#artikli').html(data.html);
-                            }
-                        });
-                    });
-                });
+                function showUser(str, id) {
+                    if (str=="") {
+                        document.getElementById("txtHint").innerHTML="";
+                        return;
+                    }
+                    if (window.XMLHttpRequest) {
+                        // code for IE7+, Firefox, Chrome, Opera, Safari
+                        xmlhttp=new XMLHttpRequest();
+                    } else { // code for IE6, IE5
+                        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    xmlhttp.onreadystatechange=function() {
+                        if (this.readyState==4 && this.status==200) {
+                            document.getElementById("artikli").innerHTML=this.responseText;
+                        }
+                    }
+                    xmlhttp.open("GET","{{ route('admin.fetchVrsteArtikli') }}?id="+id,true);
+                    xmlhttp.send();
+                }
+                // -------------------------
+
             </script>
     </div>
 @endsection
