@@ -16,6 +16,17 @@ class AdminController extends Controller
         return view('admin.index');
     }
 
+    public function update(Request $request, $id)  {
+        dd($request->input('name'));
+
+        $user->name = request('name');
+        $user->email = request('email');
+
+        $request->save();
+
+        return back();
+    }
+
     public function narudzbe() {
         $narudzbe = DB::table('orders')->get();
 
@@ -44,6 +55,7 @@ class AdminController extends Controller
             ->where('id', '=', $order_items[0]->narudzba_id)
             ->update(['kolicina' => $novaKolicina, 'ukupna_cijena' => $novaCijena]);
 
+        // Srediti brisanje cijele narudzbe ako se obrise zadnji artikl
 
         return back();
     }
@@ -134,5 +146,9 @@ class AdminController extends Controller
         }
 
         return $html;
+    }
+
+    public function deleteKorisnika($id) {
+
     }
 }

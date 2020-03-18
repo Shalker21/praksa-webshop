@@ -18,6 +18,8 @@ Route::redirect('/', '/home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/search', 'HomeController@search')->name('search');
+
 Route::get('/korisnik/show/{productId}', 'ProductController@show')->name('korisnik.show');
 
 Route::get('/kosara', 'KosaraController@index')->name('kosara.index')->middleware('auth');
@@ -46,3 +48,5 @@ Route::get('admin/korisnici', 'admin\AdminController@korisnici')->name('admin.ko
 Route::get('admin/dodajArtikl', 'admin\AdminController@dodajArtikl')->name('admin.dodajArtikl')->middleware('is_admin');
 Route::get('admin/fetch', 'admin\AdminController@fetch')->name('admin.fetch')->middleware('is_admin');
 Route::get('admin/fetchVrsteArtikli', 'admin\AdminController@fetchVrsteArtikli')->name('admin.fetchVrsteArtikli')->middleware('is_admin');
+Route::get('admin/edit/{user}', 'admin\AdminController@edit')->name('admin.edit')->middleware('is_admin');
+Route::get('admin/update/{id}', 'admin\AdminController@update')->name('admin.update')->middleware('is_admin');

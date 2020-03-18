@@ -6,8 +6,6 @@
 
     <div class="row">
 
-
-
         @foreach($artikli as $artikl)
             <div class="col-md-4 mb-3">
             <div class="card">
@@ -47,7 +45,11 @@
             </div>
         @endforeach
 
-    </div>
+
+        <div id="rez">
+
+        </div>
 
 </div>
+
 @endsection

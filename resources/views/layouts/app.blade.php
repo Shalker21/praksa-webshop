@@ -124,7 +124,15 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        @if(auth()->check() && auth()->user()->is_admin == 0)
+            <div class="bg-white p-3 mb-3">
+                @component('components.breadcrumbs')
+
+                @endcomponent
+            </div>
+        @endif
+
+        <main class="mt-5">
             @yield('content')
         </main>
     </div>
